@@ -110,7 +110,8 @@ def send_email(subject, body):
 
 
 if __name__ == '__main__':
-    new_posts = scrape_new_posts('lfg',10)
+    print('Scraping new reddit posts')
+    new_posts = scrape_new_posts('lfg',5)
     conn = create_sql_connection()
     import_posts(new_posts, conn)
     delete_dupe_posts(conn)
@@ -119,3 +120,5 @@ if __name__ == '__main__':
     if not good_posts is None:
         body = build_email_content(good_posts)
         send_email('New LFG Posts', body)
+        print('New posts found')
+
